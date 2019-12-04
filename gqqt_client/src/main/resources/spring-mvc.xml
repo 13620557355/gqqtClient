@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:websocket="http://www.springframework.org/schema/websocket" 
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/websocket 
+       http://www.springframework.org/schema/websocket/spring-websocket.xsd"
+	default-lazy-init="true">
+	
+
+	<!-- 开启controller注解支持 -->
+	<context:component-scan base-package="com.dekalong.gqqtmonitor"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- 会自动注册了validator ConversionService 
+           处理器映射器，不使用默认的，默认的在3.2已经过时 -
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"> </bean>
+	处理器适配器，不使用默认的，默认的在3.2已经过时 
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"></bean>
+	-->
+	<!-- 注解驱动，相当于上面两个过时的标签 -->
+	<mvc:annotation-driven>
+	</mvc:annotation-driven>
+    <!-- 配置的目录下的样式样式不被拦截 -->
+	 <mvc:resources location="/" mapping="/**/*.html"/>  
+     <mvc:resources location="/" mapping="/**/*.js"/>  
+	 <mvc:resources location="/" mapping="/**/*.css"/>  
+	 <mvc:resources location="/" mapping="/**/*.png"/>  
+	 <mvc:resources location="/" mapping="/**/*.gif"/>
+	 <mvc:resources location="/" mapping="/**/*.json"/>
+	 <mvc:resources location="/" mapping="/**/*.svg"/>  
+	 <mvc:resources location="/" mapping="/**/*.ico"/>
+	<!-- 登录拦截器 -->  
+	<mvc:interceptors>
+	    <mvc:interceptor>
+	       <mvc:mapping path="/**" />
+           <mvc:exclude-mapping path="/login.jsp" />
+           <mvc:exclude-mapping path="/account/query" />
+           <mvc:exclude-mapping path="/account/toUpdate" />
+           <mvc:exclude-mapping path="/account/update_pwd" />
+           <mvc:exclude-mapping path="/dealServer/*" /> 
+           <mvc:exclude-mapping path="/**/*.html"/>  
+	       <mvc:exclude-mapping path="/**/*.js"/>  
+		   <mvc:exclude-mapping path="/**/*.css"/>  
+		   <mvc:exclude-mapping path="/**/*.png"/>  
+		   <mvc:exclude-mapping path="/**/*.gif"/>
+		   <mvc:exclude-mapping path="/**/*.jpeg"/>
+		    <mvc:exclude-mapping path="/**/*.svg"/>
+		    <mvc:exclude-mapping path="/**/*.ico"/>
+		   <bean class="com.dekalong.gqqtmonitor.interceptor.LoginInterceptor" />	        
+	    </mvc:interceptor>
+   </mvc:interceptors>			 
+	<!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
+	<bean id="defaultViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"	value="org.springframework.web.servlet.view.JstlView" />
+		<property name="contentType" value="text/html" />
+		<!-- 地址去掉前缀和后缀 -->
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+</beans>

@@ -1,0 +1,6 @@
+
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="addr" value="${pageContext.request.contextPath}" />
+<script type="text/javascript" src="${addr}/js/path.js"> </script> 
+<script type="text/javascript" src="${addr}/js/login.js"> </script> 
+ 

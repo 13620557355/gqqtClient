@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		">
+	<!-- 加密时候使用自己复写过的 --> 
+	<!-- 不加密时候使用使用spring自带的 --> 	
+	<bean id="propertyConfigurer"
+		  class="com.dekalong.gqqtmonitor.util.propertiesUtil.InitPropertiesData">
+		<property name="locations">
+			<list>
+				<value>classpath:networdchannel.properties</value>
+				<value>classpath:busbarParam.properties</value>
+				<value>classpath:monitorParam.properties</value>
+			</list>
+		</property>
+		 <property name="fileEncoding">  	<!-- 因为有中文，所以要设置编码 --> 	
+             <value>utf-8</value>
+         </property>
+	</bean>
+	<context:component-scan base-package="com.dekalong">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	 </beans>

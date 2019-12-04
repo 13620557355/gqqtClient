@@ -1,0 +1,397 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.dekalong.gqqt</groupId>
+  <artifactId>gqqt_client</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>com.dekalong.gqqt Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <repositories><!-- 代码库 -->
+        <repository>
+            <id>maven-ali</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public//</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>com.springsource.repository.bundles.release</id>
+            <name>Spring Maven Repository Repository</name>
+        <url>http://repository.springsource.com/maven/bundles/release</url>
+        </repository>
+	</repositories>
+	<!--  
+   <pluginRepositories>
+		<pluginRepository>
+			<id>maven2-repo</id>
+			<name>maven2 Repository</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>Codehaus repository</id>
+			<url>http://repository.codehaus.org/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>maven-db-plugin-repo</id>
+			<name>maven db plugin repository</name>
+			<url>http://maven-db-plugin.googlecode.com/svn/maven/repo</url>
+			<layout>default</layout>
+		</pluginRepository>
+	</pluginRepositories>
+	-->
+  
+  <properties>
+        <!-- spring版本号 -->
+        <spring.version>4.2.4.RELEASE</spring.version>
+      
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+<dependencies>
+
+<!--阿里云第三方（成都创信信息技术有限公司）账号短信依赖 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.15</version>
+		</dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-util</artifactId>
+            <version>9.3.7.v20160115</version>
+        </dependency>
+<!--阿里云第三方（成都创信信息技术有限公司）账号短信依赖 -->
+<!--  
+       <dependency>
+	     <groupId>com.google.guava</groupId>
+	     <artifactId>guava</artifactId>
+	     <version>25.1-jre</version>
+	   </dependency>
+-->	   
+       <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+        <!--  
+	   <dependency>
+		    <groupId>io.netty</groupId>
+		    <artifactId>netty-all</artifactId>
+		    <version>5.0.0.Alpha2</version>
+	   </dependency>
+	   -->
+       <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>3.8.1</version>
+	      <scope>test</scope>
+       </dependency>
+       <!-- spring核心包 -->
+       <!-- websocket -->
+       <dependency>       
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>${spring.version}</version>      
+       </dependency>
+        <dependency>       
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-messaging</artifactId>
+            <version>${spring.version}</version>      
+       </dependency>
+       <dependency>
+		    <groupId>javax.websocket</groupId>
+		    <artifactId>javax.websocket-api</artifactId>
+		    <version>1.0</version>
+		    <scope>provided</scope>
+		</dependency>
+	   <dependency>
+            <groupId>org.java-websocket</groupId>
+            <artifactId>Java-WebSocket</artifactId>
+            <version>1.3.0</version>
+        </dependency>
+       
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			 <version>${spring.version}</version>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+       
+        
+  <!-- ******************************************************* -->
+  	   
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+			<version>1.5.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>1.4.2.RELEASE</version>
+		</dependency>	
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>commons-pool</groupId>
+			<artifactId>commons-pool</artifactId>
+			<version>1.6</version>
+		</dependency>
+		<!-- 
+		<dependency>
+			<groupId>com.danga</groupId>
+			<artifactId>memcached</artifactId>
+			<version>2.6.6</version>
+		</dependency>
+		 -->	 
+	
+		<!-- <dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>3.3.1</version>
+		</dependency>
+ 		-->
+		<!-- servlet的jar -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- cglib的jar -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+		<!-- aspectj的jar -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.1</version>
+		</dependency>
+
+		<!-- dbpool的jar -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+				
+		<!-- 日志的jar -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.13</version>
+		</dependency>
+		
+
+		<!-- web jstl的jar -->
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<!-- json -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.3.0</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jackson-annotations</artifactId>
+					<groupId>com.fasterxml.jackson.core</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	    
+	   <!-- 德卡隆硬件设备 -->
+			<dependency>
+		    <groupId>com.dekalong.device</groupId>
+			<artifactId>dekalong-iotdevice</artifactId>
+			<version>1.0.5</version>
+			
+		</dependency>
+	
+		
+		<!-- https://mvnrepository.com/artifact/org.jboss.marshalling/jboss-marshalling-serial 
+		编解码框架，用于NETTY
+		-->
+		<dependency>
+	        <groupId>org.jboss.marshalling</groupId>
+	        <artifactId>jboss-marshalling</artifactId>
+	        <version>2.0.0.Beta2</version>
+        </dependency>
+		<dependency>
+		    <groupId>org.jboss.marshalling</groupId>
+		    <artifactId>jboss-marshalling-serial</artifactId>
+		    <version>2.0.0.Beta2</version>
+		</dependency>
+		<!-- 字符串工具 用于AES加密解密-->
+	    <dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.0</version>
+		</dependency>
+	</dependencies>
+  <build>
+       
+		<plugins>
+		     <plugin>
+				  <groupId>org.eclipse.jetty</groupId>
+				   <artifactId>jetty-maven-plugin</artifactId>
+				   <version>9.2.1.v20140609</version>
+					<configuration>
+						<scanIntervalSeconds>10</scanIntervalSeconds>
+						<webAppConfig>
+							<contextPath>/</contextPath>               
+						</webAppConfig>
+					     <httpConnector>
+						      <port>8080</port>  <!-- https://blog.csdn.net/lijun169/article/details/80732730 -->
+						 </httpConnector>
+					<scanTargetPatterns>
+		                <scanTargetPattern>
+		                    <directory>src/main/webapp/WEB-INF</directory>
+		                    <excludes>
+		                        <exclude>**/*.jsp</exclude>
+		                    </excludes>
+		                    <includes>
+		                        <include>**/*.properties</include>
+		                        <include>**/*.xml</include>
+		                    </includes>
+		                </scanTargetPattern>
+		            </scanTargetPatterns>
+		                <resources>
+	                            <resource>
+	                                <directory>src/main/java</directory>
+	                                <includes>
+	                                    <include>**/*.xml</include>
+	                                </includes>
+	                            </resource>
+	                        </resources>
+					</configuration>
+			   
+			</plugin>
+			<!-- 设置编译版本为1.8 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>utf8</encoding>    
+				</configuration>
+			</plugin>
+        </plugins>  
+        <defaultGoal>compile</defaultGoal>
+	</build>
+
+
+</project>
