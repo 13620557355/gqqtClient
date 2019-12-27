@@ -5,15 +5,7 @@ window.onload=function(){ //iframe嵌套问题，解决session清除后首页跳
 	    window.parent.location.href=window.location.href;
 	  }
 	  autoAction();
-//	  if($('#login_error')!=undefined&&$('#login_error').val()!=''&&$('#login_error').val()!='null'){	 
-//		 var msg=$('#login_error').val();
-//		  $.messager.show({
-//				title:'提示消息',
-//				msg:msg,
-//				timeout:4000,
-//				showType:'slide'
-//	      });
-//	  }
+
 	  
 };
 
@@ -21,20 +13,43 @@ function checkInputClient() {
 	loginValidate("device/validate") ;
 }
 
-function autoAction(){
-	  var uri="device/toClientPage";
-	  window.location.href=path+uri+"?"+"sIotAddr="+getDeviceSiotAddr(40017680);
-//	  var form= document.createElement('form');
-//	  form.method="get";
-//	  form.action=path+uri;
-//	  var input = document.createElement('input');
-//	    input.type = 'hidden';
-//	    input.name = 'iotAddr';
-//	    input.value = getDeviceSiotAddr(10015600);
-//	    form.appendChild(input);   
-//	    $(document.body).append(form);
-//	    form.submit(); 
-//  	   $('#login_error').val('');
+
+function autoAction(){// 跨域访问dataType:"jsonp",
+	var sIotAddr=getDeviceSiotAddr(40017680);
+	 var remoteAddr="http://test.gq-smartwatcher.cn";
+    var localhostAddr="http://localhost:8080";
+    var param="?sIotAddr="+sIotAddr;
+    var connURI="/device/jsonpKeepConnection"+param;
+    var reconnURI="/device/toClientPage"+param;
+	if (navigator.onLine) {  //判断硬件是否在线联网
+		 $.ajax({
+            url:remoteAddr+connURI,
+            processData: false,
+            timeout:3000,
+            async:true,
+            type:"get",
+            dataType:"jsonp",
+            jsonp: "callback",
+            success:function(result){
+          	    if(typeof result=="object"){
+                    var connStatus=result.status;
+                     if(connStatus=='success'){
+                  	   window.location.href=remoteAddr+reconnURI;
+                     }else{
+                   	  toLocalAddr();
+                     }
+		    		}
+            },
+            error:function(){
+           	 toLocalAddr();
+            }
+          });
+	}else{
+		toLocalAddr();
+	}
+	function toLocalAddr(){
+	    	window.location.href=localhostAddr+reconnURI;
+	}
 }
 function getDeviceSiotAddr(iotAddr){
 	  var aesFun = {
