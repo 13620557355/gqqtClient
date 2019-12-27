@@ -160,7 +160,7 @@
       }
       
   	function initClientConn(){
-        var refreshTime=600*1000;
+        var refreshTime=60*1000;
         var setTime=setInterval(connOper, refreshTime);
    }
   	
