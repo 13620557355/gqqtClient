@@ -13,7 +13,7 @@
 	<!-- 加密时候使用自己复写过的 --> 
 	<!-- 不加密时候使用使用spring自带的 --> 	
 	<bean id="propertyConfigurer"
-		  class="com.dekalong.gqqtmonitor.util.propertiesUtil.InitPropertiesData">
+		  class="com.dekalong.gqqtmonitor.util.properties.InitPropertiesData">
 		<property name="locations">
 			<list>
 				<value>classpath:networdchannel.properties</value>

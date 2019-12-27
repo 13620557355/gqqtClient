@@ -8,7 +8,7 @@ import java.util.List;
 import com.dekalong.gqqtmonitor.po.querymodel.BusbarQuery;
 import com.dekalong.gqqtmonitor.po.querymodel.CustomerQuery;
 import com.dekalong.gqqtmonitor.po.querymodel.MonitorQuery;
-import com.dekalong.gqqtmonitor.util.propertiesUtil.InitPropertiesData;
+import com.dekalong.gqqtmonitor.util.properties.InitPropertiesData;
 
 /**
  * @author Administrator

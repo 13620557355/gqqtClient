@@ -5,9 +5,10 @@ import com.dekalong.gqqtmonitor.po.DeviceModel;
 import com.dekalong.gqqtmonitor.po.querymodel.BusbarQuery;
 import com.dekalong.gqqtmonitor.po.querymodel.CustomerQuery;
 import com.dekalong.gqqtmonitor.po.querymodel.MonitorQuery;
-import com.dekalong.gqqtmonitor.util.pageutil.PageUtil;
-import com.dekalong.gqqtmonitor.util.regexutil.StrRegex;
-import com.dekalong.gqqtmonitor.util.sortutil.DeviceModelComparator;
+import com.dekalong.gqqtmonitor.util.page.PageUtil;
+import com.dekalong.gqqtmonitor.util.regex.StrRegex;
+import com.dekalong.gqqtmonitor.util.sort.DeviceModelComparator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

@@ -1,8 +1,9 @@
-package com.dekalong.gqqtmonitor.util.pageutil;
+package com.dekalong.gqqtmonitor.util.page;
 
 import com.dekalong.gqqtmonitor.initmodel.InitAppModel;
 import com.dekalong.gqqtmonitor.po.DeviceModel;
-import com.dekalong.gqqtmonitor.util.sortutil.DeviceModelComparator;
+import com.dekalong.gqqtmonitor.util.sort.DeviceModelComparator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

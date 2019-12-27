@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.dekalong.gqqtmonitor.initmodel.InitDeviceData;
 import com.dekalong.gqqtmonitor.networtchannel.nettyconn.datarepeater.LocalClientBootstrap;
-import com.dekalong.gqqtmonitor.util.propertiesUtil.InitPropertiesData;
+import com.dekalong.gqqtmonitor.util.properties.InitPropertiesData;
 
 /**
  * <B>概要说明：</B><BR>

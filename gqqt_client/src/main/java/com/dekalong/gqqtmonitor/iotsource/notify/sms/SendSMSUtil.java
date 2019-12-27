@@ -10,8 +10,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Service;
 
-import com.dekalong.gqqtmonitor.util.httputil.HttpUtils;
-import com.dekalong.gqqtmonitor.util.josnutil.JsonHelper;
+import com.dekalong.gqqtmonitor.util.http.HttpUtils;
+import com.dekalong.gqqtmonitor.util.josn.JsonHelper;
 
 
 /**

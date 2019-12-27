@@ -1,4 +1,4 @@
-package com.dekalong.gqqtmonitor.util.sortutil;
+package com.dekalong.gqqtmonitor.util.sort;
 
 import com.dekalong.gqqtmonitor.po.DeviceModel;
 import com.dekalong.gqqtmonitor.po.Monitor;

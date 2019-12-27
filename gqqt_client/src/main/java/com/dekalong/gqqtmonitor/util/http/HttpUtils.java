@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 TPRI. All Rights Reserved.
  */
-package com.dekalong.gqqtmonitor.util.httputil;
+package com.dekalong.gqqtmonitor.util.http;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

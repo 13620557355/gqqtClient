@@ -9,7 +9,7 @@ import com.dekalong.gqqtmonitor.networtchannel.nettyconn.datarepeater.remotelycl
 import com.dekalong.gqqtmonitor.networtchannel.nettyconn.datarepeater.repeater.RepeaterServiceBootstrap;
 import com.dekalong.gqqtmonitor.po.DeviceModel;
 import com.dekalong.gqqtmonitor.po.querymodel.CustomerQuery;
-import com.dekalong.gqqtmonitor.util.propertiesUtil.InitPropertiesData;
+import com.dekalong.gqqtmonitor.util.properties.InitPropertiesData;
 import com.dekalong.gqqtmonitor.websocket.WebSocketSendDataTimer;
 import com.dekalong.networtdevice.DataSourceThread;
 import com.dekalong.networtdevice.dataupload.IDataReceive;

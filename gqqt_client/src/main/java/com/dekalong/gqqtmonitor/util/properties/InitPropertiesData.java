@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 TPRI. All Rights Reserved.
  */
-package com.dekalong.gqqtmonitor.util.propertiesUtil;
+package com.dekalong.gqqtmonitor.util.properties;
 
 import java.util.HashMap;
 import java.util.Map;

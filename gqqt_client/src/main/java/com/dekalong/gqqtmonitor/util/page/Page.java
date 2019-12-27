@@ -1,4 +1,4 @@
-package com.dekalong.gqqtmonitor.util.pageutil;
+package com.dekalong.gqqtmonitor.util.page;
 
 import java.util.Collections;
 import java.util.List;

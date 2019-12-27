@@ -1,4 +1,4 @@
-package com.dekalong.gqqtmonitor.util.josnutil;
+package com.dekalong.gqqtmonitor.util.josn;
 import java.util.Map;
 
 /**

@@ -2,7 +2,8 @@ package com.dekalong.gqqtmonitor.web;
 
 import com.dekalong.gqqtmonitor.initmodel.InitDeviceData;
 import com.dekalong.gqqtmonitor.util.encrypt.AESUtil;
-import com.dekalong.gqqtmonitor.util.josnutil.JsonHelper;
+import com.dekalong.gqqtmonitor.util.josn.JsonHelper;
+
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;

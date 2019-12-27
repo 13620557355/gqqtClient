@@ -2,7 +2,7 @@ package com.dekalong.gqqtmonitor.po;
 
 import java.io.Serializable;
 
-import com.dekalong.gqqtmonitor.util.pageutil.Page;
+import com.dekalong.gqqtmonitor.util.page.Page;
 /**
  * 
  * @author Long

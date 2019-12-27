@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.dekalong.gqqtmonitor.util.regexutil;
+package com.dekalong.gqqtmonitor.util.regex;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.dekalong.gqqtmonitor.po.BaseModel;
-import com.dekalong.gqqtmonitor.util.josnutil.JsonHelper;
+import com.dekalong.gqqtmonitor.util.josn.JsonHelper;
 
 /**
  * @author Long

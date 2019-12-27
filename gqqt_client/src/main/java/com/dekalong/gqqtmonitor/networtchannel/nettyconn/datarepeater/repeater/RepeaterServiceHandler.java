@@ -33,11 +33,9 @@ public class RepeaterServiceHandler extends ChannelInboundHandlerAdapter{
     @Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-    	   System.out.println("硬件消息来了");
 	        deviceChannel=ctx;
 	        validateRemotelyChannel();
             if(remotelyIsConn) {
-            	System.out.println("到远程客户端");
             	if(!toRemotelyJdrk.isEmpty()) {
     				toRemotelyJdrk.clear();
     				toRemotelyJdrk.add(msg);
@@ -45,7 +43,6 @@ public class RepeaterServiceHandler extends ChannelInboundHandlerAdapter{
     				toRemotelyJdrk.add(msg);
     			}
 	        }else {
-	        	System.out.println("到本地客户端");
 	        	if(!toLocalhostJdrk.isEmpty()) {
 					toLocalhostJdrk.clear();
 					toLocalhostJdrk.add(msg);

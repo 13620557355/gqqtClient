@@ -11,7 +11,7 @@ import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
-import com.dekalong.gqqtmonitor.util.regexutil.StrRegex;
+import com.dekalong.gqqtmonitor.util.regex.StrRegex;
 
 
 /**

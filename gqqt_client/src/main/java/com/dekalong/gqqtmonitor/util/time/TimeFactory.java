@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 TPRI. All Rights Reserved.
  */
-package com.dekalong.gqqtmonitor.util.timeutil;
+package com.dekalong.gqqtmonitor.util.time;
 
 import java.text.DateFormat;
 import java.text.ParseException;
