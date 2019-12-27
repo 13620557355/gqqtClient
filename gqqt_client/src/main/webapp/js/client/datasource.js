@@ -4,7 +4,7 @@
 	 var iotAddr=0;
 	 window.onload=function (){
 		initIotAddr(); //必须在websocket之前
-		initBox();
+//		initBox();
 		initWebSocket();
 		initClientConn();
 	};

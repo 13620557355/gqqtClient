@@ -47,9 +47,10 @@ public class InitAppModel implements InitializingBean
   {
 	InitDeviceData.initData();
 	DataSourceThread.registerIDataReceive(IDataReceive);//注册
-    initClientThread();
+	initDataThread();
     initLocalClient();
     initRemotelyClient();
+    initHardwareDataThread();
     initThread();
   }
   public static void initRemotelyClient() {
@@ -68,7 +69,7 @@ public class InitAppModel implements InitializingBean
     });
   }
 
-  public static void initClientThread() {
+  public static void initDataThread() {
 	 threadPool.execute(new Runnable()
     {
       public void run() {
@@ -101,19 +102,21 @@ public class InitAppModel implements InitializingBean
       }
     });
   }
-
+  private void initHardwareDataThread() {  //初始化接收硬件数据的线程
+	  threadPool.execute(new Runnable() {
+			@Override
+			public void run() {
+				int port=Integer.valueOf(InitPropertiesData.getContextProperty("networdchannel.hardwarePort"));
+				RepeaterServiceBootstrap.initBootstrap(port);
+			}
+		});
+  }
   private void initThread() {
-	threadPool.execute(new Runnable() {
-		@Override
-		public void run() {
-			int port=Integer.valueOf(InitPropertiesData.getContextProperty("networdchannel.hardwarePort"));
-			RepeaterServiceBootstrap.initBootstrap(port);
-		}
-	});
 	threadPool.execute(this.onLineValidate);
 	threadPool.execute(this.webSocketSendDataTimer);
   }
-
+  
+  
   public static List<CustomerQuery> getCustomerList()
   {
     return customerList;

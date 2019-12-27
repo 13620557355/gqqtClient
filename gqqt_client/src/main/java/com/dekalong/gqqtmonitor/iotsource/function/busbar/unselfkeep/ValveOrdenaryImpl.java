@@ -164,8 +164,7 @@ public class ValveOrdenaryImpl implements IValveExecuteOpertion {
     double rightPar = dpq.getIotParamRight();
 
     int valveLeft = dpq.getDriValveLeft();
-    int valveRight = dpq.getDriValveLeft();
-
+    int valveRight = dpq.getDriValveRight();
 
     if ((valveLeft == 0) && (valveRight == 0)) {
       if ((leftPar > driAlerm) && (rightPar > driAlerm)) {

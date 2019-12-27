@@ -118,6 +118,7 @@ public class StrRegex {
 		return Integer.valueOf(parm.subSequence(position, position+1).toString());
    } 
    
+   
    public static void main(String[] args) {
 //	  String parm="pagehomeSearcher=安|page=|mm=2|";
 ////	  System.out.println(parm.length());
@@ -125,7 +126,9 @@ public class StrRegex {
 //	  System.out.println(getSearcherParm(parm, "pagehomeSearcher"));
 //	  String s="";
 //	  System.out.println(s.trim().equals(""));
-	   String string="systemName=广气气体智能监控系统|aniLogoID=gqqt|indexLogoPath=/images/gqqt/indexLogo.png|icoPath=/images/gqqt/gqqt.ico|";
-	   System.out.println(getWebsocketParm(string,"icoPath"));
+//	   String string="systemName=广气气体智能监控系统|aniLogoID=gqqt|indexLogoPath=/images/gqqt/indexLogo.png|icoPath=/images/gqqt/gqqt.ico|";
+//	   System.out.println(getWebsocketParm(string,"icoPath"));
+//	   System.out.println(getRelayPosition("1000000000000000", 0));
+//	   System.out.println(getRelayPosition("1000000000000000", 1));
    }
 }

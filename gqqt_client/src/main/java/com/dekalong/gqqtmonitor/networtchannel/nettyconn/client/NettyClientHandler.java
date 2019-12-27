@@ -34,8 +34,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
    	}
    @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-	 
-	   InitAppModel.initClientThread();
+	   InitAppModel.initDataThread();
     }
    
    @Override

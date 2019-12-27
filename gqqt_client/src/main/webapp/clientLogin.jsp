@@ -9,7 +9,8 @@
   <%@include file="/public/mobile.jspf" %>	
  <script type="text/ecmascript" src="${addr}/js/gqqtjm/md5.js"></script>
  <script type="text/ecmascript" src="${addr}/js/gqqtjm/sha1.js"></script>
-  <script type="text/ecmascript" src="${addr}/js/loginValidate.js"></script>
+ <script type="text/ecmascript" src="${addr}/js/loginValidate.js"></script>
+ <script type="text/javascript" src="${addr}/js/gqqtjm/aes.js"></script>
 </head>
 <body>
      <input id="login_error" name="login_error" type="hidden" value="<%=session.getAttribute("login_error")%>" />
@@ -23,10 +24,12 @@
 				</div>
 			</div>
 		</header>
+		
 		<form  id="submit">
 		     <div style="margin-bottom:40px" > </div>
 		  	 <div style="margin-bottom:15px;text-align:center;">
 				<!--  <img alt="gqqt" src="${addr}/images/newlogo.png" style="height:80px;weight:38px;" />-->
+		
 			</div>
 			<div style="margin-bottom:50px;text-align:center;font-size:20px;color:#1D1F88;font-weight: bold;">
 				客户端登陆界面
@@ -40,7 +43,6 @@
 			<div style="text-align:center;margin-top:0px;">
 			    <input type="button"  value="登录" id="submit1" class="easyui-linkbutton" style="width:60%;height:50px;font-size:16px;background:#24748F;color:#FFFFFF" onclick="checkInputClient();"/>
 			</div>
-			
 				<!-- 
 		<footer style="position:fixed; bottom:20px;">
 			  <div  id="dekalong" style="text-align:center;" >

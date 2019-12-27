@@ -44,8 +44,9 @@ public class BusbarOrdinaryImpl
       if (dpq.getDriValveIdRight() != 999) {
         this.valveOrdinary.autoValveSwicth(dpq);
       }
-      else
-        this.valveOrdinary.onlyOneValveSwicth(dpq);
+      else {
+    	  this.valveOrdinary.onlyOneValveSwicth(dpq); 
+      }
   }
 
   private int getRealTimeRelayStatus(int position, String data)

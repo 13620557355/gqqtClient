@@ -61,7 +61,7 @@
 	     </div>
 	   </div>
    </div>
-<div id="pageUtil" style="position:fixed;margin:10px 0 0 0;bottom:0px;left:0px;color: #FFF;"></div>
+<div id="pageUtil" style="position:fixed;margin:10px 0 0 0;bottom:0px;height:20px;left:0px;color: #2b2b2b;"></div>
 <iframe id="cylinder" src="${addr}/svg/cylinder.html"></iframe>
 <iframe id="logo" src="${addr}/svg/logo.html"></iframe>
 <iframe id="manometer" src="${addr}/svg/manometer.html"></iframe>
