@@ -23,7 +23,7 @@ function checkInputClient() {
 
 function autoAction(){
 	  var uri="device/toClientPage";
-	  window.location.href=path+uri+"?"+"sIotAddr="+getDeviceSiotAddr(10015600);
+	  window.location.href=path+uri+"?"+"sIotAddr="+getDeviceSiotAddr(40017680);
 //	  var form= document.createElement('form');
 //	  form.method="get";
 //	  form.action=path+uri;

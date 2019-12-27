@@ -73,6 +73,5 @@
 <script type="text/javascript" src="${addr}/js/fabricjs/fabric.min.js"></script>
 <script type="text/javascript" src="${addr}/js/client/client_animation.js"></script>
 <script type="text/javascript" src="${addr}/js/client/datasource.js"></script>
-<script type="text/javascript" src="${addr}/js/client/clientheartbeat.js"></script>
 </body>
 </html>
