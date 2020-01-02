@@ -15,7 +15,7 @@
         var wi=document.getElementById("aniBody").offsetWidth;
         var pageHi=document.getElementById("pageUtil").offsetHeight;
 //        var originalHeight=268,originalWidth=265.4; //原始大小：height:268;width:265.4;
-        
+      
         if(oldDeviceNum<=5){
         	setCanvasSize(oldDeviceNum);
         }else{
@@ -106,7 +106,7 @@
 			 }			 
 		 }
 	
-		 hideCacheFactorys()
+		 hideCacheFactorys();
 		  /**隐藏盒子***/
 		  function hideCacheFactorys(){ //隐藏多有没有使用的画布
 				for(var i=1;i<=10;i++){
@@ -917,45 +917,49 @@ function initIndexAnimation(canvas,objCacheMap,canvasData){
 			    	 isExcuteValve=false;
 			    	 animationDataHandler(cacheData);
 			    	 return false;
-		      });
-		      return false;
+		        });
+		        return false;
 			   }
 			   $.messager.confirm('确认执行修改', '提交修改后会立刻更改电磁阀状态,请确认是否修改？', function(r){
 					if (r){
+						var cloneData= getCloneJsonData(canvasData);
 					    if(data!=null){
-					       var rows=canvasData;
 				    	   if(operationPosition=='left'){
-				    		   data.driValveLeft=(data.driValveLeft==0)?1:0;
+				    		   cloneData.driValveLeft=(cloneData.driValveLeft==0)?1:0;
 				    		   isCurrentOpen('left');
 				    	   }else if(operationPosition=='right'){
-				    		   data.driValveRight=(data.driValveRight==0)?1:0;
+				    		   cloneData.driValveRight=(cloneData.driValveRight==0)?1:0;
 				    		   isCurrentOpen('right');
-				    			
 				    	   }
 				    	    function isCurrentOpen(postion){
-				    	       if(data.driValveLeft==1&&data.driValveRight==1){
+				    	       if(cloneData.driValveLeft==1&&cloneData.driValveRight==1){
 				    	    	   $.messager.alert('修改提示','同时打开电磁阀时,会自动关闭另一侧电磁阀！','warning',function(){
 				        	    		 if(postion=='left'){
-				        	    			 data.driValveRight=0;
+				        	    			 cloneData.driValveRight=0;
 				        	    		 }else if(postion=='right'){
-				        	    			 data.driValveLfet=0;
+				        	    			 cloneData.driValveLfet=0;
 				        	    		 }
-				        	    		 ajixRequest(rows);
+				        	    		 ajixRequest(cloneData);
 				        	    	 });
 				      		   }else{
-				      			   ajixRequest(rows);
+				      			   ajixRequest(cloneData);
 				      		   }
 				    	    }
 					   }
-					   
-					   function ajixRequest(reqData){
-				           var jsonData= getCloneJsonData(reqData);
+					    function getCloneJsonData(jsonData){
+			            	 var cloneObject= JSON.parse(JSON.stringify(jsonData));
+			                  	delete cloneObject.page;
+			                  	delete cloneObject.iotParamLeft;
+			                  	delete cloneObject.iotParamRight;
+			                   return cloneObject;
+			             }
+					   function ajixRequest(jsonData){
 				           var strData=JSON.stringify(jsonData);
 				            if(isCommitting){//防止重复提交 
 				             isCommitting=false;
 				           	   $.ajax({
 				                      type: "POST",
-				                      async: false,//同步，需等待返回 
+				                      async: true,//同步，需等待返回 
 				                      url:addr+"busbar/valveStatusUpd",
 				                      contentType:"application/json", //必须有
 				                      data: strData,
@@ -983,7 +987,7 @@ function initIndexAnimation(canvas,objCacheMap,canvasData){
 				                    	 } 
 				                 	     lockScreenModify=true;
 				                 	     isExcuteValve=false;
-		                    			 animationDataHandler(cacheData); 
+				                 	     connOper();//马上刷新一次页面
 				                      },
 				                      error:function(XMLHttpRequest, textStatus){
 					                   	   $('#dlg1').dialog('close');
@@ -1000,14 +1004,7 @@ function initIndexAnimation(canvas,objCacheMap,canvasData){
 				                      }
 				               });
 				            }
-				            
-				            function getCloneJsonData(jsonData){
-				            	 var cloneObject= JSON.parse(JSON.stringify(jsonData));
-				                  	delete cloneObject.page;
-				                  	delete cloneObject.iotParamLeft;
-				                  	delete cloneObject.iotParamRight;
-				                   return cloneObject;
-				             }
+				         
 					   }      
 					}else{ //if (r){}
 						isExcuteValve=false;

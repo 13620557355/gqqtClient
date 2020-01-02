@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.dekalong.gqqtmonitor.initmodel.InitAppModel;
+import com.dekalong.gqqtmonitor.initmodel.InitDeviceData;
 import com.dekalong.gqqtmonitor.po.DeviceModel;
 import com.dekalong.gqqtmonitor.po.querymodel.BusbarQuery;
 import com.dekalong.gqqtmonitor.po.querymodel.CustomerQuery;
@@ -39,9 +40,14 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
    
    @Override
    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+	   reLoadLocalData(); //重新加载本地数据
 	   cause.printStackTrace();
       if(cause instanceof IOException) {}
        ctx.close();
+   }
+   private void reLoadLocalData() {
+	   InitAppModel.customerList.clear();
+	   InitDeviceData.initData();
    }
    /**
  	 * channelReadComplete channel 通道 Read 读取 Complete 完成

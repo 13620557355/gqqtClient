@@ -86,7 +86,7 @@
     		    	};
     		    	ws.onclose = function(evnt) {
                        ws.close();
-    		    	   connOper(true);
+    		    	//   connOper(true);
                        reconnect(wsUrl);
     		    		
     		    	};
@@ -160,15 +160,15 @@
       }
       
   	function initClientConn(){
-        var refreshTime=60*1000;
+        var refreshTime=10*1000;
         var setTime=setInterval(connOper, refreshTime);
    }
   	
   	function connOper(istoLocal){// 跨域访问dataType:"jsonp",
   		 var remoteAddr="http://test.gq-smartwatcher.cn";
-         var localhostAddr="http://localhost:8080";
+//         var localhostAddr="http://localhost:8080";
 //  		var remoteAddr="http://localhost:8080";
-//        var localhostAddr="http://localhost:9090";
+        var localhostAddr="http://localhost:9090";
          var sIotAddr=$("#sIotAddr").val();
          var param="?sIotAddr="+sIotAddr;
          var connURI="/device/jsonpKeepConnection"+param;
