@@ -15,7 +15,7 @@ function checkInputClient() {
 
 
 function autoAction(){// 跨域访问dataType:"jsonp",
-	var sIotAddr=getDeviceSiotAddr(40017680);
+	var sIotAddr=getDeviceSiotAddr(10015600);
 	 var remoteAddr="http://test.gq-smartwatcher.cn";
     var localhostAddr="http://localhost:8080";
     var param="?sIotAddr="+sIotAddr;

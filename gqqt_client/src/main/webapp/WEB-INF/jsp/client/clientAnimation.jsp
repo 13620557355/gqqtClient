@@ -1,10 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="addr" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-     <%@include file="/public/path.jspf" %>
-     <%@include file="/public/mobile.jspf" %>
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=0.3, maximum-scale=0.3, minimum-scale=0.6">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+	<link rel="stylesheet" type="text/css" href="${addr}/jquery-easyui-1.7.5/themes/metro/easyui.css">  
+    <link rel="stylesheet" type="text/css" href="${addr}/jquery-easyui-1.7.5/themes/mobile.css">  
+    <link rel="stylesheet" type="text/css" href="${addr}/jquery-easyui-1.7.5/themes/icon.css"> 
     <style>
       html, body{width:100%;height: 100%;margin: 0; padding: 0;border: 0;overflow-x:auto;overflow-y:auto;background-color:#2b2b2b;}
       #box{text-align:center;}
@@ -13,6 +18,10 @@
     </style>
 </head>
 <body id='aniBody' >
+<script type="text/javascript" src="${addr}/jquery-easyui-1.7.5/jquery.min.js"></script>  
+<script type="text/javascript" src="${addr}/jquery-easyui-1.7.5/jquery.easyui.min.js"></script> 
+<script type="text/javascript" src="${addr}/jquery-easyui-1.7.5/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="${addr}/jquery-easyui-1.7.5/jquery.easyui.mobile.js"></script> 
 <input id="sIotAddr" name="sIotAddr" type="hidden" value="<%=request.getAttribute("sIotAddr")%>" /> 
 	<div id="p2" class="easyui-navpanel" style="position:relative; background:#2b2b2b;" >
 		<div id="dlg1" class="easyui-dialog" style="padding:20px 6px;width:80%;" data-options="inline:true,modal:true,closed:true,title:'正在修改，请稍后...'">
@@ -73,9 +82,11 @@
 <iframe id="swicth" src="${addr}/svg/swicth.html"></iframe>
 <iframe id="tank"   src="${addr}/svg/tank.html"></iframe>
 <iframe id="warning"   src="${addr}/svg/warning.html"></iframe>
+<script type="text/javascript" src="${addr}/js/path.js"> </script> 
+<script type="text/javascript" src="${addr}/js/login.js"> </script> 
 <script type="text/javascript" src="${addr}/js/gqqtjm/aes.js"></script>
 <script type="text/javascript" src="${addr}/js/fabricjs/fabric.min.js"></script>
-<script type="text/javascript" src="${addr}/js/client/client_animation_20200103.js"></script>
-<script type="text/javascript" src="${addr}/js/client/datasource_20200103.js"></script>
+<script type="text/javascript" src="${addr}/js/client/client_animation_20200118.js"></script>
+<script type="text/javascript" src="${addr}/js/client/datasource_20200118.js"></script>
 </body>
 </html>

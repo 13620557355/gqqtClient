@@ -129,4 +129,5 @@ public class InitAppModel implements InitializingBean
 		}
 		return list;
 	}
+
 }

@@ -70,10 +70,12 @@
     			    	    data= JSON.parse(dataValue);
     			    	    cacheData=data;
 			    	    	if(data.search!=undefined||data.total>1){
-    			    	    	$('#pageUtil').pagination('refresh',{	// 改变选项并刷新分页栏信息
-    			    	    		total: data.total,
-    			    	    		pageNumber: pageObj.pageNumber
-    			    	    	});	   
+			    	    		if(pageObj!=null&&pageObj.pageNumber!=null){
+			    	    			$('#pageUtil').pagination('refresh',{	// 改变选项并刷新分页栏信息
+	    			    	    		total: data.total,
+	    			    	    		pageNumber: pageObj.pageNumber
+	    			    	    	});	
+			    	    		} 
 			    	         }
 			    	    	if(data!=null){
 	    			    	    animationDataHandler(data);
@@ -160,7 +162,7 @@
       }
       
   	function initClientConn(){
-        var refreshTime=10*1000;
+        var refreshTime=600*1000;
         var setTime=setInterval(connOper, refreshTime);
    }
   	
@@ -168,7 +170,7 @@
   		 var remoteAddr="http://test.gq-smartwatcher.cn";
 //         var localhostAddr="http://localhost:8080";
 //  		var remoteAddr="http://localhost:8080";
-        var localhostAddr="http://localhost:9090";
+        var localhostAddr="http://localhost:8080";
          var sIotAddr=$("#sIotAddr").val();
          var param="?sIotAddr="+sIotAddr;
          var connURI="/device/jsonpKeepConnection"+param;

@@ -354,7 +354,7 @@
 							<contextPath>/</contextPath>               
 						</webAppConfig>
 					     <httpConnector>
-						      <port>9090</port>  <!-- https://blog.csdn.net/lijun169/article/details/80732730 -->
+						      <port>8080</port>  <!-- https://blog.csdn.net/lijun169/article/details/80732730 -->
 						 </httpConnector>
 					<scanTargetPatterns>
 		                <scanTargetPattern>

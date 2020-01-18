@@ -133,6 +133,7 @@
     			for(var j=0;j<Object.keys(objCacheMap).length;j++){
     				var key=Object.keys(objCacheMap)[j];
     				canvas.remove(objCacheMap.get(key));
+    				canvas.off();//移除所有事件
     			}
 			}
 		}
