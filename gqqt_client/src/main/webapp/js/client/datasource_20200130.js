@@ -44,8 +44,7 @@
     
     var pageObj=null;
     var cacheData=null;
-    function initWebSocket(){
-    	
+    function initWebSocket(){	
     		 var webSocketPath = document.location.host;
     		 var lockReconnect = false;//避免重复连接
     		 var wsUrl = getwsurl();
@@ -61,12 +60,14 @@
     			function initEventHandle() {
     				
     			    ws.onopen = function(evnt) {
+    			    	connOper(true);
+    			    	remoteAddrIsActive();
     		            heartCheck.reset().start();//心跳检测重置
     		    	};
     		    	ws.onmessage = function(evnt) { 
     		    		var  dataValue= evnt.data;
-    		    		if(dataValue!=null&&dataValue.indexOf("HeartBeatPackage") == -1){
-    		    			var data=[];
+    		    		if(dataValue!=null&&dataValue.indexOf("HeartBeatPackage") == -1){  	
+		    				var data=[];
     			    	    data= JSON.parse(dataValue);
     			    	    cacheData=data;
 			    	    	if(data.search!=undefined||data.total>1){
@@ -75,10 +76,10 @@
 	    			    	    		total: data.total,
 	    			    	    		pageNumber: pageObj.pageNumber
 	    			    	    	});	
-			    	    		} 
+			    	    		}
 			    	         }
 			    	    	if(data!=null){
-	    			    	    animationDataHandler(data);
+			    	    		window.animationDataHandler(data);
 			    	    	}
     		    		}
     		    		 heartCheck.reset().start();//如果获取到消息，心跳检测重置
@@ -88,7 +89,8 @@
     		    	};
     		    	ws.onclose = function(evnt) {
                        ws.close();
-    		    	//   connOper(true);
+    		    	   connOper(true);
+    		    	   remoteAddrIsActive();
                        reconnect(wsUrl);
     		    		
     		    	};
@@ -97,7 +99,6 @@
     		    	    ws.close(); 
     		    	};
     			}
-    	       
     	    	function getwsurl() {
     	    		//作兼容性连接
     	    		if ('WebSocket' in window &&iotAddr!=0&&iotAddr!=undefined) {  
@@ -160,24 +161,27 @@
            return  aesFun.decrypt(sIotAddr);   
 
       }
-      
+    var setTime=null;
+    var isFirstConn=true;
+    var isWebSocketOper=false;
   	function initClientConn(){
-        var refreshTime=600*1000;
-        var setTime=setInterval(connOper, refreshTime);
-   }
+        var refreshTime=3600*1000;//600
+        setTime=setInterval(connOper, refreshTime);
+        isFirstConn=false;
+    }
   	
-  	function connOper(istoLocal){// 跨域访问dataType:"jsonp",
-  		 var remoteAddr="http://test.gq-smartwatcher.cn";
-//         var localhostAddr="http://localhost:8080";
-//  		var remoteAddr="http://localhost:8080";
-        var localhostAddr="http://localhost:8080";
-         var sIotAddr=$("#sIotAddr").val();
-         var param="?sIotAddr="+sIotAddr;
-         var connURI="/device/jsonpKeepConnection"+param;
-         var reconnURI="/device/toClientPage"+param;
-         if(istoLocal){
-        	 toLocalAddr();
-         }
+  	function connOper(isWebsoket){// 跨域访问dataType:"jsonp",
+  	  if(isWebsoket==true){
+  		  isWebSocketOper=true;
+  	  }else{
+  		  isWebSocketOper=false;
+  	  }
+  	  var remoteAddr="http://test.gq-smartwatcher.cn";
+       var localhostAddr="http://localhost:8080";
+       var sIotAddr=$("#sIotAddr").val();
+       var param="?sIotAddr="+sIotAddr;
+       var connURI="/device/jsonpKeepConnection"+param;
+       var reconnURI="/device/toClientPage"+param;
     	if (navigator.onLine) {  //判断硬件是否在线联网
     		 $.ajax({
                  url:remoteAddr+connURI,
@@ -191,7 +195,17 @@
                	    if(typeof result=="object"){
                          var connStatus=result.status;
                           if(connStatus=='success'){
-                       	   window.location.href=remoteAddr+reconnURI;
+                        	  var isSkip=false;
+                        	  if(isWebSocketOper){
+                        		  if(path.indexOf(remoteAddr) == -1){isSkip=true;}
+                        	  }else{
+                        		  if(!isFirstConn){isSkip=true;}
+                        	  }
+                        	  if(isSkip){
+                        		  clearInterval(remoteAddrSkipTest);
+                        		  clearInterval(setTime);
+                      		      window.location.href=remoteAddr+reconnURI;
+                        	  }
                           }else{
                         	  toLocalAddr();
                           }
@@ -205,7 +219,52 @@
     		toLocalAddr();
     	}
     	function toLocalAddr(){
-    	    	window.location.href=localhostAddr+reconnURI;
+    		var isSkip=false;
+    		if(isWebSocketOper){
+    			  if(path.indexOf(localhostAddr) == -1){ isSkip=true;}
+    		}else{ 
+    			  if(!isFirstConn){ isSkip=true;}
+    		}
+    		if(isSkip){
+    			  clearInterval(remoteAddrSkipTest);
+    			  clearInterval(setTime);
+     			  window.location.href=localhostAddr+reconnURI;
+    		}
     	}
     }
+  	
+  	var remoteAddrSkipTest=null;
+  	function remoteAddrIsActive(){
+        if (!navigator.onLine&&remoteAddrSkipTest==null) {
+       		  remoteAddrSkipTest=setInterval(operConnTest, 5000);
+        }
+  	}
    
+  	function operConnTest(){
+  		if(navigator.onLine){
+  			var remoteAddr="http://test.gq-smartwatcher.cn";
+  	        var sIotAddr=$("#sIotAddr").val();
+  	        var param="?sIotAddr="+sIotAddr;
+  	        var connURI="/device/jsonpKeepConnection"+param;
+  	        var reconnURI="/device/toClientPage"+param;
+  	  		$.ajax({
+  	            url:remoteAddr+connURI,
+  	            processData: false,
+  	            timeout:3000,
+  	            async:true,
+  	            type:"get",
+  	            dataType:"jsonp",
+  	            jsonp: "callback",
+  	            success:function(result){
+  	          	    if(typeof result=="object"){
+  	                    var connStatus=result.status;
+  	                     if(connStatus=='success'){
+  	                    	  clearInterval(remoteAddrSkipTest);
+  	                    	  remoteAddrSkipTest=null;
+  	                    	  window.location.href=remoteAddr+reconnURI;
+  	                     }
+  			    	}
+  	            }
+  	          });
+  		}
+  	}

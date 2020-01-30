@@ -14,6 +14,7 @@ import com.dekalong.gqqtmonitor.iotsource.function.busbar.IBusbarDataExecute;
 import com.dekalong.gqqtmonitor.iotsource.notify.sms.IValidateSMS;
 import com.dekalong.gqqtmonitor.po.querymodel.BusbarQuery;
 import com.dekalong.gqqtmonitor.websocket.WebSocketDataHandler;
+import com.dekalong.gqqtmonitor.websocket.WebSocketSendDataTimer;
 import com.dekalong.networtdevice.po.DeviceNodeData;
 
 
@@ -67,7 +68,7 @@ public class BusbarDataHandle {
 		if(isSuccess) {
 			boolean isSendMessage=valveOperType(dpq,relayStatus,nonDuplicate);
 			if(isSendMessage||nonDuplicate) {
-			   //validateSMS.validateCustomerSendSMS(dpq);
+			   validateSMS.validateCustomerSendSMS(dpq);
 				notifyWebSocket.sendNotifyDevice(dpq.getUuid());
 			}
 		}

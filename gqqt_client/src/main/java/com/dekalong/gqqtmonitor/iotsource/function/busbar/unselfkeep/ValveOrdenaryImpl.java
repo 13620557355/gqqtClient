@@ -5,6 +5,7 @@ import com.dekalong.gqqtmonitor.iotsource.function.busbar.IValveExecuteOpertion;
 import com.dekalong.gqqtmonitor.po.querymodel.BusbarQuery;
 import com.dekalong.gqqtmonitor.po.querymodel.CustomerQuery;
 import com.dekalong.gqqtmonitor.websocket.WebSocketDataHandler;
+import com.dekalong.gqqtmonitor.websocket.WebSocketSendDataTimer;
 import com.dekalong.networtdevice.datadown.DataDownExecutor;
 import com.dekalong.networtdevice.po.DeviceTelecontrolAck;
 import java.util.HashMap;
@@ -311,11 +312,13 @@ public class ValveOrdenaryImpl implements IValveExecuteOpertion {
       }
 
       this.notifyWebSocket.sendNotifyDevice(dpq.getUuid());
+      WebSocketSendDataTimer.isUpdateData=true;
       if (isAuto) dpq.setDriAuto(1);
       return isSuccess;
     } catch (Exception e) {
       e.printStackTrace();
       this.notifyWebSocket.sendNotifyDevice(dpq.getUuid());
+      WebSocketSendDataTimer.isUpdateData=true;
       if (isAuto) dpq.setDriAuto(1); 
     }
     return false;
@@ -352,6 +355,7 @@ public class ValveOrdenaryImpl implements IValveExecuteOpertion {
         if ((isOpenRight) && (openIsSuc)) {
           dpq.setDriValveRight(1);
           this.notifyWebSocket.sendNotifyDevice(dpq.getUuid());
+          WebSocketSendDataTimer.isUpdateData=true;
         }
         else if (isOpenRight) {
           isSuccess = false;
@@ -362,11 +366,13 @@ public class ValveOrdenaryImpl implements IValveExecuteOpertion {
       }
 
       this.notifyWebSocket.sendNotifyDevice(dpq.getUuid());
+      WebSocketSendDataTimer.isUpdateData=true;
       if (isAuto) dpq.setDriAuto(1);
       return isSuccess;
     } catch (Exception e) {
       e.printStackTrace();
       this.notifyWebSocket.sendNotifyDevice(dpq.getUuid());
+      WebSocketSendDataTimer.isUpdateData=true;
       if (isAuto) dpq.setDriAuto(1); 
     }
     return false;

@@ -21,7 +21,6 @@
 <script type="text/javascript" src="${addr}/jquery-easyui-1.7.5/jquery.min.js"></script>  
 <script type="text/javascript" src="${addr}/jquery-easyui-1.7.5/jquery.easyui.min.js"></script> 
 <script type="text/javascript" src="${addr}/jquery-easyui-1.7.5/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="${addr}/jquery-easyui-1.7.5/jquery.easyui.mobile.js"></script> 
 <input id="sIotAddr" name="sIotAddr" type="hidden" value="<%=request.getAttribute("sIotAddr")%>" /> 
 	<div id="p2" class="easyui-navpanel" style="position:relative; background:#2b2b2b;" >
 		<div id="dlg1" class="easyui-dialog" style="padding:20px 6px;width:80%;" data-options="inline:true,modal:true,closed:true,title:'正在修改，请稍后...'">
@@ -87,6 +86,6 @@
 <script type="text/javascript" src="${addr}/js/gqqtjm/aes.js"></script>
 <script type="text/javascript" src="${addr}/js/fabricjs/fabric.min.js"></script>
 <script type="text/javascript" src="${addr}/js/client/client_animation_20200118.js"></script>
-<script type="text/javascript" src="${addr}/js/client/datasource_20200118.js"></script>
+<script type="text/javascript" src="${addr}/js/client/datasource_20200130.js"></script>
 </body>
 </html>

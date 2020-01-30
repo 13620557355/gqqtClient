@@ -38,6 +38,7 @@ public class WebSocketSendDataTimer
       while (true)
       {
         sendClientAnimationData();
+        isUpdateData = false;
         Thread.sleep(SLEEPTIME);
       }
     } catch (Exception e) {
@@ -52,7 +53,8 @@ public class WebSocketSendDataTimer
  
 
   private List<DeviceModel> dataCheck(List<DeviceModel> newList, List<DeviceModel> odlSet) {
-    if ((newList == null) || (odlSet == null)) return null;
+	if(isUpdateData&&newList!=null&&newList.size()>0) {return newList;}
+	if ((newList == null) || (odlSet == null)) { return null;}
     if (newList.size() == 0) return null;
     boolean isChange = false;
     for (DeviceModel oldData : odlSet) {
@@ -63,13 +65,11 @@ public class WebSocketSendDataTimer
           break;
         }
       }
-      if ((isActive) || (isUpdateData)) {
-        isChange = true;
-        break;
+      if ((isActive)) {
+        isChange = true; break;
       }
     }
     if (isChange) {
-      isUpdateData = false;
       return newList;
     }
     return null;

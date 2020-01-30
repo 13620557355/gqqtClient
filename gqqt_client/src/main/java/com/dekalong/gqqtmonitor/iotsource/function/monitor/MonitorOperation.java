@@ -4,6 +4,7 @@ import com.dekalong.gqqtmonitor.iotsource.function.TransmitterTypeFactory;
 import com.dekalong.gqqtmonitor.iotsource.notify.sms.IValidateSMS;
 import com.dekalong.gqqtmonitor.po.querymodel.MonitorQuery;
 import com.dekalong.gqqtmonitor.websocket.WebSocketDataHandler;
+import com.dekalong.gqqtmonitor.websocket.WebSocketSendDataTimer;
 import com.dekalong.networtdevice.po.DeviceNodeData;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,9 @@ public class MonitorOperation
     }
     if (nonDuplicate) {
       nonDuplicate = false;
-
       this.notifyWebSocket.sendNotifyDevice(mq.getUuid());
+      validateSMS.validateCustomerSendSMS(mq);
+      WebSocketSendDataTimer.isUpdateData=true;
     }
   }
 

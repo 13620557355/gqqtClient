@@ -3,8 +3,10 @@
  */
 package com.dekalong.gqqtmonitor.iotsource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.dekalong.gqqtmonitor.initmodel.InitAppModel;
+import com.dekalong.gqqtmonitor.websocket.WebSocketDataHandler;
 import com.dekalong.gqqtmonitor.websocket.WebSocketSendDataTimer;
 import com.dekalong.gqqtmonitor.po.DeviceModel;
 
@@ -19,7 +21,8 @@ public class OnLineValidate implements Runnable{
     
 	private static final int SLEEP_TIME=30000;
 	private static final int TIME_OUT=30000;;
-	
+	@Autowired
+	private WebSocketDataHandler notifyWebSocket;
 	@Override
 	public void run() {
 		while (true) {
@@ -47,6 +50,7 @@ public class OnLineValidate implements Runnable{
 						    dpq.setOnLineStatus(0);
 							dpq.setIotParamLeft(0);
 							dpq.setIotParamRight(0);
+							notifyWebSocket.sendNotifyDevice(dpq.getUuid());
 							WebSocketSendDataTimer.isUpdateData=true;
 					  }
 						

@@ -12,6 +12,7 @@ import com.dekalong.gqqtmonitor.initmodel.InitAppModel;
 import com.dekalong.gqqtmonitor.iotsource.function.busbar.ISelfKeepValveOpertion;
 import com.dekalong.gqqtmonitor.iotsource.function.busbar.IValveExecuteOpertion;
 import com.dekalong.gqqtmonitor.websocket.WebSocketDataHandler;
+import com.dekalong.gqqtmonitor.websocket.WebSocketSendDataTimer;
 import com.dekalong.gqqtmonitor.po.querymodel.CustomerQuery;
 import com.dekalong.gqqtmonitor.po.querymodel.BusbarQuery;
 
@@ -373,10 +374,12 @@ public class ValveSelfKeepImpl implements IValveExecuteOpertion{
 				dpq.setDriValveRight(0);
 			}
 			notifyWebSocket.sendNotifyDevice(dpq.getUuid());
+			WebSocketSendDataTimer.isUpdateData=true;
 			 if(isAuto) {dpq.setDriAuto(1);}
 			return true;
 		}else {
 			notifyWebSocket.sendNotifyDevice(dpq.getUuid());
+			WebSocketSendDataTimer.isUpdateData=true;
 			 if(isAuto) {dpq.setDriAuto(1);}
     		return false;
 		}
@@ -409,10 +412,12 @@ public class ValveSelfKeepImpl implements IValveExecuteOpertion{
 				dpq.setDriValveRight(1);
 			}
 			notifyWebSocket.sendNotifyDevice(dpq.getUuid());
+			WebSocketSendDataTimer.isUpdateData=true;
 			 if(isAuto) {dpq.setDriAuto(1);}
 			return true;
 		}else {
 			notifyWebSocket.sendNotifyDevice(dpq.getUuid());
+			WebSocketSendDataTimer.isUpdateData=true;
 			 if(isAuto) {dpq.setDriAuto(1);}
     		return false;
 		}
